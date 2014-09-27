@@ -63,7 +63,13 @@ class TopicsController < ApplicationController
   
   def upvote
     @topic = Topic.find(params[:id])
-    @topic.votes.create
+    @vote = @topic.votes.build(user_id: current_user.id)
+    if @vote.save
+      flash[:notice] = "Thanks for voting"
+      #redirect_to(topics_path)
+    else
+      flash[:error] = @vote.errors.full_messages
+    end
     redirect_to(topics_path)
   end
   
