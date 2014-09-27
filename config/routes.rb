@@ -10,7 +10,7 @@ Suggestotron::Application.routes.draw do
     end
     
     member do
-      delete 'downvote'
+      post 'downvote'
     end
   end
 

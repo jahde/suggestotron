@@ -75,7 +75,8 @@ class TopicsController < ApplicationController
   
   def downvote
     @topic = Topic.find(params[:id])
-    @topic.votes.last.delete unless @topic.votes.empty?
+    #@topic.votes.last.delete unless @topic.votes.empty?
+    @vote = @topic.downvotes.create(user_id: current_user.id)
     redirect_to(topics_path)
   end
 
